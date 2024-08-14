@@ -7,7 +7,7 @@ class Sprite(pygame.sprite.Sprite):
         super().__init__(groups)
 
         self.image = image
-        self.rect = self.image.get_rect(topleft=pos)
+        self.rect = self.image.get_frect(topleft=pos)
         self.mask = pygame.mask.from_surface(self.image)
 
 
