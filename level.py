@@ -17,7 +17,7 @@ class Level:
 
         self.bullet_sprites = pygame.sprite.Group()
 
-        self.map = Map([(0, 100), (200, 100), (200, 300), (600, 300), (800, 500)])
+        self.map = Map([(-50, 100), (0, 100), (200, 100), (200, 300), (600, 300), (800, 500)])
 
         self.selected_tower = None
         self.draw = False
@@ -25,7 +25,7 @@ class Level:
         self.wave = Wave(self.make_enemy)
 
     def make_enemy(self):
-        Enemy((self.all_sprites, self.enemies), [(0, 100), (200, 100), (200, 300), (600, 300), (800, 500)])
+        Enemy((self.all_sprites, self.enemies), self.map.points)
 
     def run(self, dt):
         if self.enemies.sprites().__len__() == 0:

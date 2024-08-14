@@ -29,12 +29,13 @@ class Tower(Sprite):
         m = 1000
         self.target = None
         for enemy in self.enemies:
-            e_vec = pygame.math.Vector2(enemy.rect.center)
-            t_vec = pygame.math.Vector2(self.rect.center)
+            if 0 < enemy.rect.x < 800 and 0 < enemy.rect.y < 600:
+                e_vec = pygame.math.Vector2(enemy.rect.center)
+                t_vec = pygame.math.Vector2(self.rect.center)
 
-            if e_vec.distance_to(t_vec) < m:
-                m = e_vec.distance_to(t_vec)
-                self.target = enemy
+                if e_vec.distance_to(t_vec) < m:
+                    m = e_vec.distance_to(t_vec)
+                    self.target = enemy
 
         if self.target:
             self.vecs = {
