@@ -49,8 +49,8 @@ class Tower(Sprite):
             }
 
     def attack(self):
-        if not self.target:
-            self.retarget()
+
+        self.retarget()
 
         if self.target and self.enemies.sprites().__len__() > 0:
             if not self.time:

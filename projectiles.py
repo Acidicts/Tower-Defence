@@ -20,3 +20,6 @@ class Projectile(Sprite):
     def update(self, dt):
         self.rect.x += self.direction.x * self.speed * dt
         self.rect.y += self.direction.y * self.speed * dt
+
+        if 0 > self.rect.x < 800 or 0 > self.rect.y > 600:
+            self.kill()

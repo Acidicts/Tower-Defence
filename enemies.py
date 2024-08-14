@@ -1,6 +1,7 @@
 import pygame
 
 from sprites import Sprite
+from random import randint
 
 
 class Enemy(Sprite):
@@ -14,16 +15,23 @@ class Enemy(Sprite):
         self.health = 2
         self.speed = 5
 
+        self.wait = False
+
     def move(self, dt):
-        if self.points:
-            if self.rect.collidepoint(self.points[0]):
-                self.points.pop(0)
+        if self.wait:
+            if self.points:
+                if self.rect.collidepoint(self.points[0]):
+                    self.points.pop(0)
+                else:
+                    vec = pygame.math.Vector2(self.points[0]) - pygame.math.Vector2(self.rect.center)
+                    vec.normalize_ip()
+                    vec *= self.speed * dt
+                    self.rect.move_ip(vec)
             else:
-                vec = pygame.math.Vector2(self.points[0]) - pygame.math.Vector2(self.rect.center)
-                vec.normalize_ip()
-                vec *= self.speed * dt
-                self.rect.move_ip(vec)
-        else:
+                self.kill()
+
+    def die(self):
+        if self.wait:
             self.kill()
 
     def update(self, dt):
@@ -31,4 +39,7 @@ class Enemy(Sprite):
             self.kill()
         else:
             self.move(dt)
+
+        if randint(0, 10000) <= 5:
+            self.wait = True
 
