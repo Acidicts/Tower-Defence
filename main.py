@@ -12,15 +12,19 @@ class Game:
 
         self.level = Level()
 
+        self.clock = pygame.time.Clock()
+
     def run(self):
         while self.running:
+            self.clock.tick()
+            dt = self.clock.get_fps() / 1000
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     self.running = False
 
             self.screen.fill((50, 150, 30))
 
-            self.level.run()
+            self.level.run(dt)
 
             pygame.display.flip()
 
