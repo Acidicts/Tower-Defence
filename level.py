@@ -34,7 +34,7 @@ class Level:
         self.map.draw(pygame.display.get_surface())
 
         keys = pygame.key.get_just_released()
-        temp = Tower((pygame.mouse.get_pos()), None, (self.all_sprites, self.towers), self.enemies, 1000, (self.all_sprites, self.bullet_sprites))
+        temp = Tower((pygame.mouse.get_pos()), None, (self.all_sprites, self.towers), self.enemies, 5000, (self.all_sprites, self.bullet_sprites))
 
         if keys[pygame.K_i]:
             offset = (temp.rect.x - self.map.map.get_rect().x, temp.rect.y - self.map.map.get_rect().y)
